@@ -18,6 +18,9 @@ public class SampleClass{
     //Instance Variable
     public String instanceMessage = 'Instance variable';
     
+    //Defining Custom Exception
+    public class SampleException extends Exception{}
+    
     //Static method
     public static void printStaticData(){
         System.debug('staticMessage:'+staticMessage);
