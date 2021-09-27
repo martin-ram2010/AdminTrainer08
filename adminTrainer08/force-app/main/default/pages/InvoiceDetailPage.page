@@ -1,0 +1,20 @@
+<!-- View -->
+<apex:page standardController="Customer_Invoice__c" extensions="InvoiceDetailExtension" >
+    <apex:form >
+        <c:InvoiceDetaillComponent /><br/>
+        {!invoice.Name}<br/>
+        <!-- {!$User.FirstName} - {!$User.Email}<br/>-->
+        <!-- To display the invoice price -->
+        <b>Customer Invoice Price:</b>&nbsp;&nbsp;<apex:outputField value="{!Customer_Invoice__c.Price__c}"/><br/>
+    
+        <b>Enter Percentage:</b>&nbsp;&nbsp;<apex:inputText value="{!percentage}" id="theTextInput"/> 
+        <apex:commandbutton value="Calculate" rerender="discountId" action="{!calculatePercentage}"/><br/>
+        
+        <!-- To display the 10% discounted price -->
+        <apex:outputPanel id="discountId">
+            <b>{!percentage}% Discounted Price:</b>&nbsp;&nbsp; <apex:outputText value="${0, number, ###,###,###,##0.00}">
+                <apex:param value="{!discountPrice}" />
+            </apex:outputText>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

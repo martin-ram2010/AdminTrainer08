@@ -1,0 +1,5 @@
+<apex:component >
+    <h1 style="color:green">
+        Customer Invoice
+    </h1>
+</apex:component>
