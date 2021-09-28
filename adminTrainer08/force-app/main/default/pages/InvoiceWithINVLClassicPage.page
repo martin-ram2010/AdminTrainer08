@@ -1,0 +1,49 @@
+<apex:page controller="InvoiceWithINVLClassic">
+    
+    <apex:pageBlock title="Invoice Details">
+        
+        <apex:pageBlockSection title="All Invoices" >
+            <apex:pageBlockTable value="{!invoices}" var="invoice">
+                <apex:column value="{!invoice.Id}"/>
+                <apex:column value="{!invoice.Name}"/>
+                <apex:column value="{!invoice.Billing_Date__c}"/>
+                <apex:column value="{!invoice.Country__c}"/>
+                <apex:column value="{!invoice.Status__c}"/>
+                
+                <!-- Button to get the invoice details -->
+                <apex:column headerValue="Action">
+                    <apex:form >
+                        <apex:commandButton value="Show Details" action="{!getInvoiceDetail}" rerender="invoiceDetails">
+                            <apex:param name="param" id="param" value="{!invoice.Id}" assignTo="{!invoiceId}"/>
+                        </apex:commandButton>
+                    </apex:form>
+                </apex:column>
+                
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        
+        
+        <apex:pageBlockSection title="Selected Invoice Details" id="invoiceDetails">
+            
+            <apex:pageBlockSection title="Invoice Details">
+                <apex:outputField value="{!invoiceRecord.Name}"/>
+                <apex:outputField value="{!invoiceRecord.Billing_Date__c}"/>
+                <apex:outputField value="{!invoiceRecord.Country__c}"/>
+                <apex:outputField value="{!invoiceRecord.Status__c}"/>
+                <apex:outputField value="{!invoiceRecord.Max_INVL_Price__c}"/>
+                <apex:outputField value="{!invoiceRecord.Min_INVL_Price__c}"/>
+                <apex:outputField value="{!invoiceRecord.SOA_External_ID__c}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Invoice Line Item Details">
+                <apex:pageBlockTable value="{!invoiceLineItems}" var="invl">
+                    <apex:column value="{!invl.Product_Name__c}"/>
+                    <apex:column value="{!invl.Price__c}"/>
+                    <apex:column value="{!invl.Status__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+</apex:page>
