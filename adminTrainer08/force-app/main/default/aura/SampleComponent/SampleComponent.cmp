@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:attribute name="personName" type="String" description= "To keep person name"/>
+    
+    <lightning:card>
+        <h1>Sample Component - Mr./Mrs. {!v.personName}</h1>
+    </lightning:card>
+</aura:component>

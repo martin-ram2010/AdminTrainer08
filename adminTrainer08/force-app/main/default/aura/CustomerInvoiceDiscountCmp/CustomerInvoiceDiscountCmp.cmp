@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="CustomerInvoiceDiscController">
+    
+    <aura:attribute name="discount" type="Integer" description="To hold the discount"/>
+    <aura:attribute name="discountedPrice" type="Integer" description="To hold the discounted price"/>
+    
+    <lightning:card title="Discount Calculator">
+        <div class ="slds-p-left_large ">
+            <h1 class="greenClass">Customer Invoice</h1>
+            
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Customer_Invoice__c">
+                <div class="slds-box">
+                    <lightning:outputField fieldName="Name" />
+                    <lightning:outputField fieldName="Price__c" />
+                </div>
+            </lightning:recordViewForm>
+            
+            <lightning:input type="number" name="discount" value="{!v.discount}" label="Enter Percentage: " />
+            <lightning:button variant="brand" label="Calculate" title="Calculate Discount" onclick="{! c.calculateDiscount }" />
+        	<ui:outputNumber value="{!v.discountedPrice}"/>
+        </div>
+    </lightning:card>
+</aura:component>
