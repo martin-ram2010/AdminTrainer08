@@ -1,0 +1,36 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="InvoiceDetailsWithINVLLtng">
+    
+    <!-- Attributes -->
+    <aura:attribute name="invoiceRecord" type="Customer_Invoice__c" description="hold the invoice record"/>
+    <aura:attribute name="invls" type="List" description="hold the invoice line item records"/>
+    <aura:attribute name="columns" type="List" description="to define the table columns"/>
+    <aura:attribute name="isInvlsAvailable" type="Boolean" description="to mention whether Invoice Line Item records available for current invoice" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.loadInvoiceDetails}"/>
+
+    <!-- To Display Invoice Record -->
+    <lightning:card title="Invoice Details">
+        Name:<b><lightning:formattedText value="{!v.invoiceRecord.Name}" /></b><br/>
+        Total Price:<b><lightning:formattedNumber value="{!v.invoiceRecord.Price__c}" style="currency" currencyCode="USD"/></b><br/>
+    </lightning:card>
+
+    <!-- To Display to Invoice Line Items -->
+    <lightning:card title="Invoice Line Item">
+        <!-- Display if INVL records available -->
+        <aura:if isTrue="{!v.isInvlsAvailable}">
+            <div style="height: 300px">
+                <lightning:datatable
+                        keyField="Id"
+                        data="{! v.invls }"
+                        columns="{! v.columns }"
+                    
+                        />
+            </div>
+            <!-- Display if INVL records not available -->
+        <aura:set attribute="else">
+            <h1>No Invoice Line Item records available.</h1>
+        </aura:set>
+    </aura:if> 
+    </lightning:card>
+
+</aura:component>	
