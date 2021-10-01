@@ -4,7 +4,7 @@
     <aura:attribute name="discountedPrice" type="Integer" description="To hold the discounted price"/>
     
     <lightning:card title="Discount Calculator">
-        <div class ="slds-p-left_large ">
+        <div class ="slds-p-left_large">
             <h1 class="greenClass">Customer Invoice</h1>
             
             <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Customer_Invoice__c">
